@@ -134,6 +134,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     private fun getAsyncEscPosPrinter(printerConnection: DeviceConnection?): AsyncEscPosPrinter {
         val format = SimpleDateFormat("'on' yyyy-MM-dd 'at' HH:mm:ss")
+        val qrCodeText = "00020101021138580010A000000727012800069704070114190367941660190208QRIBFTTA53037045802VN8300840063045974"
         val printer = AsyncEscPosPrinter(printerConnection, 203, 48f, 32)
         return printer.addTextToPrint(
             "[L]\n" +
@@ -156,7 +157,7 @@ class MainActivity : AppCompatActivity() {
                     "[L]<b>MegaV - Android app</b>\n" +
                     "[L]<b>With a Bluetooth printer</b>\n" +
                     "\n" +
-                    "[C]<img>" + PrinterTextParserImg.bitmapToHexadecimalString(printer, this.applicationContext.resources.getDrawableForDensity(R.drawable.print2, DisplayMetrics.DENSITY_MEDIUM)) + "</img>\n" +
+                    "[C]<qrcode size='20'>$qrCodeText</qrcode>\n" +
                     "\n" +
                     "[C]<b>VU DINH SAM</b>\n" +
                     "[C]<b>TECHCOMBANK</b>\n" +
@@ -164,7 +165,7 @@ class MainActivity : AppCompatActivity() {
                     "[L]<font siza='normal'>We can also print barcodes :</font>\n" +
                     "[C]<barcode>8312547845511</barcode>\n"
         )
-    }
+    }   
 
     companion object {
         const val PERMISSION_BLUETOOTH = 1
